@@ -11,10 +11,10 @@ module.exports = (sequelize, DataTypes) => {
     // underscored: true,
   });
 
-  User.associate = (models) => {
-    User.belongsTo(models.BlogPost,
-      { as: 'BlogPost', foreginKey: 'userId' });
-  };
+  // User.associate = (models) => {
+  //   User.belongsTo(models.BlogPost,
+  //     { as: 'BlogPost', foreginKey: 'userId' });
+  // };
 
   return User;
 };
