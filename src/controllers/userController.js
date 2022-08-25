@@ -1,7 +1,7 @@
 const userService = require('../services/userService');
 const JWT = require('../auth/JWT');
 
-const login = async (req, res) => {
+const login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
     const user = await userService.login({ email, password });
@@ -10,9 +10,7 @@ const login = async (req, res) => {
   
     res.status(200).json({ token });
   } catch (err) {
-    console.log(err);
-    const { message, status } = err;
-    res.status(status).json({ message });
+    next(err);
   }
 };
 
