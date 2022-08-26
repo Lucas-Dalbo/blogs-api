@@ -8,8 +8,10 @@ const userRoute = express.Router();
 userRoute.post('/login', userMiddleware.loginValidation, userController.login);
 userRoute.post('/user', userMiddleware.createValidation, userController.create);
 
-// userRoute.use(JWT.validate);
+// **Trava teste**
+// userRoute.use(JWT.validate); 
 
 userRoute.get('/user', JWT.validate, userController.findAll);
+userRoute.get('/user/:id', JWT.validate, userController.findById);
 
 module.exports = userRoute;
