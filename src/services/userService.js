@@ -23,4 +23,12 @@ const create = async ({ displayName, email, password, image }) => {
   return result;
 };
 
-module.exports = { login, create };
+const findAll = async () => {
+  const result = await User.findAll();
+
+  const safeResult = result.map(({ displayName, email, image }) => ({ displayName, email, image }));
+
+  return safeResult;
+};
+
+module.exports = { login, create, findAll };

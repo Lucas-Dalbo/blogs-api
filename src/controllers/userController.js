@@ -27,4 +27,14 @@ const create = async (req, res, next) => {
   }
 };
 
-module.exports = { login, create };
+const findAll = async (_req, res, next) => {
+  try {
+    const allUsers = await userService.findAll();
+
+    res.status(200).json(allUsers);
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports = { login, create, findAll };
