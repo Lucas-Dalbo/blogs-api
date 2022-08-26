@@ -6,4 +6,10 @@ const create = async (name) => Category.create({ name });
 
 const findAll = async () => Category.findAll();
 
-module.exports = { create, findAll };
+const findCategories = async (ids) => {
+  const result = await Category.findAll({ where: { id: ids } });
+
+  return result;
+};
+
+module.exports = { create, findAll, findCategories };
