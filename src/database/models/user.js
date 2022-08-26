@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   // User.associate = (models) => {
-  //   User.belongsTo(models.BlogPost,
+  //   User.hasMany(models.BlogPost,
   //     { as: 'BlogPost', foreginKey: 'userId' });
   // };
 

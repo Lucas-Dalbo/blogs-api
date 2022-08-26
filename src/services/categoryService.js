@@ -2,10 +2,8 @@ const models = require('../database/models');
 
 const { Category } = models;
 
-const create = async (name) => {
-  const result = await Category.create({ name });
+const create = async (name) => Category.create({ name });
 
-  return result;
-};
+const findAll = async () => Category.findAll();
 
-module.exports = { create };
+module.exports = { create, findAll };
