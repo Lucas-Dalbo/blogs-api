@@ -10,7 +10,7 @@ const { BlogPost, PostCategory } = models;
 const create = async ({ title, content, categoryIds, userId }) => {
   const transaction = await sequelize.transaction();
 
-  const blogPost = await BlogPost.create({
+  const result = await BlogPost.create({
     title,
     content,
     userId,
@@ -20,16 +20,24 @@ const create = async ({ title, content, categoryIds, userId }) => {
 
   if (!categories.length) throw new CustomError(400, '"categoryIds" not found');
 
+  /*
+  Usando Promise.All:
+
   await Promise.all(
     categories.map(async (category) => {
       const categoryId = category.dataValues.id;
-      await PostCategory.create({ postId: blogPost.id, categoryId }, { transaction });
+      await PostCategory.create({ postId: result.id, categoryId }, { transaction });
     }),
   );
+  */
+
+  const postCat = categories
+    .map((category) => ({ postId: result.id, categoryId: category.dataValues.id }));
+  await PostCategory.bulkCreate(postCat, { transaction });
 
   await transaction.commit();
 
-  return blogPost;
+  return result;
 };
 
 module.exports = { create };
