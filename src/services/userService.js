@@ -14,4 +14,13 @@ const login = async ({ email, password }) => {
   return result;
 };
 
-module.exports = { login };
+const create = async ({ displayName, email, password, image }) => {
+  const isEmailNew = await User.findOne({ where: { email } });
+  if (isEmailNew) throw new CustomError(409, 'User already registered');
+  
+  const result = await User.create({ displayName, email, password, image });
+
+  return result;
+};
+
+module.exports = { login, create };

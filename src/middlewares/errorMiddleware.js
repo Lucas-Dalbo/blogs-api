@@ -1,4 +1,10 @@
 const errorMiddleware = (err, _req, res, _next) => {
+  if (err.isJoi) {
+    console.log(err);
+    return res.status(400)
+      .json({ message: err.details[0].message });
+  }
+
   if (!err.status) {
     console.log(err);
     return res.status(500).json({ message: 'Something went wrong' });

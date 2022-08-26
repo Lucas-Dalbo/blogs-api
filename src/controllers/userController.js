@@ -14,4 +14,17 @@ const login = async (req, res, next) => {
   }
 };
 
-module.exports = { login };
+const create = async (req, res, next) => {
+  try {
+    const { displayName, email, password, image } = req.body;
+    const newUser = await userService.create({ displayName, email, password, image });
+    
+    const token = JWT.create(newUser);
+    
+    res.status(201).json({ token });
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports = { login, create };
