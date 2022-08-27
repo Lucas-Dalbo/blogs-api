@@ -12,4 +12,6 @@ blogPostRoute.post(
   blogPostController.create,
 );
 
+blogPostRoute.get('/post', JWT.validate, blogPostController.findAll);
+
 module.exports = blogPostRoute;
