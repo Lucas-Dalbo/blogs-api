@@ -42,4 +42,18 @@ const findAll = async () => {
   return result;
 };
 
-module.exports = { create, findAll };
+const findPost = async (id) => {
+  const result = await BlogPost.findByPk(id, {
+    attributes: { exclude: ['UserId'] },
+    include: [
+      { model: User, as: 'user', attributes: { exclude: ['password'] } },
+      { model: Category, as: 'categories', through: { attributes: [] } },
+    ],
+  });
+
+  if (!result) throw new CustomError(404, 'Post does not exist');
+
+  return result;
+};
+
+module.exports = { create, findAll, findPost };

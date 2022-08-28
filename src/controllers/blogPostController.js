@@ -23,4 +23,15 @@ const findAll = async (_req, res, next) => {
   }
 };
 
-module.exports = { create, findAll };
+const findPost = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const post = await blogPostService.findPost(id);
+
+    res.status(200).json(post);
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports = { create, findAll, findPost };
