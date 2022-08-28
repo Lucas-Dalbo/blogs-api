@@ -15,4 +15,17 @@ const postValidation = (req, _res, next) => {
   next();
 };
 
-module.exports = { postValidation };
+const updateValidation = (req, _res, next) => {
+  const { title, content } = req.body;
+
+  const { error } = Joi.object({
+    title: Joi.string().required(),
+    content: Joi.string().required(),
+  }).validate({ title, content });
+
+  if (error) throw new CustomError(400, 'Some required fields are missing');
+
+  next();
+};
+
+module.exports = { postValidation, updateValidation };

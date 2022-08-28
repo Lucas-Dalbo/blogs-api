@@ -56,4 +56,24 @@ const findPost = async (id) => {
   return result;
 };
 
-module.exports = { create, findAll, findPost };
+const update = async ({ userId, id, title, content }) => {
+  const post = await BlogPost.findByPk(id);
+
+  if (!post) throw new CustomError(404, 'Post does not exist');
+
+  if (post.userId !== userId) throw new CustomError(401, 'Unauthorized user');
+
+  await BlogPost.update({ title, content }, { where: { id } });
+
+  const result = await BlogPost.findByPk(id, {
+    attributes: { exclude: ['UserId'] },
+    include: [
+      { model: User, as: 'user', attributes: { exclude: ['password'] } },
+      { model: Category, as: 'categories', through: { attributes: [] } },
+    ],
+  });
+
+  return result;
+};
+
+module.exports = { create, findAll, findPost, update };

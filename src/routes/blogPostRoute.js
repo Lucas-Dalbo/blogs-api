@@ -15,4 +15,11 @@ blogPostRoute.post(
 blogPostRoute.get('/post', JWT.validate, blogPostController.findAll);
 blogPostRoute.get('/post/:id', JWT.validate, blogPostController.findPost);
 
+blogPostRoute.put(
+  '/post/:id',
+  JWT.validate,
+  blogPostMiddleware.updateValidation,
+  blogPostController.update,
+);
+
 module.exports = blogPostRoute;

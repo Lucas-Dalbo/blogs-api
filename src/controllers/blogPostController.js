@@ -34,4 +34,18 @@ const findPost = async (req, res, next) => {
   }
 };
 
-module.exports = { create, findAll, findPost };
+const update = async (req, res, next) => {
+  try {
+    const { id: userId } = req.data;
+    const { id } = req.params;
+    const { title, content } = req.body;
+
+    const updatedPost = await blogPostService.update({ userId, id, title, content });
+
+    res.status(200).json(updatedPost);
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports = { create, findAll, findPost, update };
