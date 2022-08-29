@@ -76,4 +76,16 @@ const update = async ({ userId, id, title, content }) => {
   return result;
 };
 
-module.exports = { create, findAll, findPost, update };
+const remove = async ({ userId, id }) => {
+  const post = await BlogPost.findByPk(id);
+
+  if (!post) throw new CustomError(404, 'Post does not exist');
+
+  if (post.userId !== userId) throw new CustomError(401, 'Unauthorized user');
+
+  await BlogPost.destroy({ where: { id } });
+
+  return true;
+};
+
+module.exports = { create, findAll, findPost, update, remove };

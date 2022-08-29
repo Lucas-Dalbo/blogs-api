@@ -22,4 +22,6 @@ blogPostRoute.put(
   blogPostController.update,
 );
 
+blogPostRoute.delete('/post/:id', JWT.validate, blogPostController.remove);
+
 module.exports = blogPostRoute;

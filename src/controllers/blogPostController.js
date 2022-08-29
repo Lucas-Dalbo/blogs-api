@@ -48,4 +48,17 @@ const update = async (req, res, next) => {
   }
 };
 
-module.exports = { create, findAll, findPost, update };
+const remove = async (req, res, next) => {
+  try {
+    const { id: userId } = req.data;
+    const { id } = req.params;
+
+    await blogPostService.remove({ userId, id });
+
+    res.status(204).end();
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports = { create, findAll, findPost, update, remove };
