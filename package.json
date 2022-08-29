@@ -4,8 +4,8 @@
   "engines": {
     "node": ">=16.0.0"
   },
-  "engineStrict": true,
   "private": true,
+  "engineStrict": true,
   "dependencies": {
     "dotenv": "8.2.0",
     "express": "4.17.1",
