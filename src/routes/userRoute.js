@@ -13,5 +13,6 @@ userRoute.post('/user', userMiddleware.createValidation, userController.create);
 
 userRoute.get('/user', JWT.validate, userController.findAll);
 userRoute.get('/user/:id', JWT.validate, userController.findById);
+userRoute.delete('/user/me', JWT.validate, userController.remove);
 
 module.exports = userRoute;

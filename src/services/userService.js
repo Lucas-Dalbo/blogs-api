@@ -41,4 +41,14 @@ const findById = async (id) => {
   return result;
 };
 
-module.exports = { login, create, findAll, findById };
+const remove = async (id) => {
+  const user = await User.findByPk(id);
+
+  if (!user) throw new CustomError(404, 'User does not exist');
+
+  await User.destroy({ where: { id } });
+
+  return true;
+};
+
+module.exports = { login, create, findAll, findById, remove };
