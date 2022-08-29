@@ -1,3 +1,4 @@
+const { Op } = require('sequelize');
 const models = require('../database/models');
 const categoryService = require('./categoryService');
 const CustomError = require('../helpers/customError');
@@ -88,4 +89,22 @@ const remove = async ({ userId, id }) => {
   return true;
 };
 
-module.exports = { create, findAll, findPost, update, remove };
+const getByQuery = async (search) => {
+  const query = `%${search}%`;
+
+  const result = await BlogPost.findAll({
+    attributes: { exclude: ['UserId'] },
+    include: [
+      { model: User, as: 'user', attributes: { exclude: ['password'] } },
+      { model: Category, as: 'categories', through: { attributes: [] } },
+    ],
+    where: { [Op.or]: [
+      { title: { [Op.like]: query } },
+      { content: { [Op.like]: query } },
+    ] },
+  });
+
+  return result;
+};
+
+module.exports = { create, findAll, findPost, update, remove, getByQuery };

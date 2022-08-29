@@ -13,6 +13,7 @@ blogPostRoute.post(
 );
 
 blogPostRoute.get('/post', JWT.validate, blogPostController.findAll);
+blogPostRoute.get('/post/search', JWT.validate, blogPostController.getByQuery);
 blogPostRoute.get('/post/:id', JWT.validate, blogPostController.findPost);
 
 blogPostRoute.put(

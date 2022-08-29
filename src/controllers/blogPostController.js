@@ -61,4 +61,21 @@ const remove = async (req, res, next) => {
   }
 };
 
-module.exports = { create, findAll, findPost, update, remove };
+const getByQuery = async (req, res, next) => {
+  try {
+    const { q } = req.query;
+
+    if (!q) {
+      const posts = await blogPostService.findAll();
+      res.status(200).json(posts);
+    }
+
+    const posts = await blogPostService.getByQuery(q);
+
+    res.status(200).json(posts);
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports = { create, findAll, findPost, update, remove, getByQuery };
