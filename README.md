@@ -1,16 +1,35 @@
-# 🚧 README em construção 🚧
 
-<!-- Olá, Tryber!
+[Read it in English!](./README-Eng.md)
 
-Esse é apenas um arquivo inicial para o README do seu projeto.
+# Projeto SQL: Blogs API
+Este projeto foi desenvolvido enquanto estudante da Trybe no módulo de Back-End!
 
-É essencial que você preencha esse documento por conta própria, ok?
+---
+## Objetivo
+O objetivo do projeto é construir API utilizando express e sequelize, simulando o ambiente de um blog.
 
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
+---
+## Aprendizados
+ - Como construir uma API usando sequelize;
+ - Como utilizar migrations e models do sequelize;
+ - Como implementar associação de tabelas utilizando sequelize;
+ - Como usar o JWT parar cirar e validar tokens;
+ - Desenvolver conhecimentos relativos ao express, como construção de rotas e suas validações.
 
-⚠️ IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
+---
+## Funcionalidades das Rotas
+ - Resgitro e remoção de usuário.
+ - Realizar login.
+ - Listar usuários.
+ - Acrescentar, editar ou deletar uma postagem.
+ - Listar as postagens por id, por pesquisa ou todos eles.
+ - Acrescentar uma categoria.
+ - Listar as categorias.
 
--->
+---
+## O que foi utilizado?
+ - Node.js;
+ - Express;
+ - Sequelize e Sequelize-cli; 
+ - MySQL, MySQLWorkbench;
+ - Docker-Compose para construção do container para os testes locais.
