@@ -13,7 +13,7 @@ The objective was to build an API using express and sequelize, within the contex
 - How to use Sequelize when building an API.
 - How to use Sequelize's models and migrations.
 - How to use table associations with Sequelize.
-- Hoe to use JWT to create and validate tokens.
+- How to use JWT to create and validate tokens.
 - Apply and develop knowledge about Express, endpoint build, its validations and business rules.
 
 ---
